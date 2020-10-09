@@ -1,7 +1,8 @@
 import { LOAD_BOOKS } from "./types"
 
 const initialState = {
-  books: []
+  books: localStorage.getItem('books') ? JSON.parse(localStorage.getItem('books') ): [],
+  purchase: []
 }
 
 export const booksReducer = (state = initialState, action) => {
