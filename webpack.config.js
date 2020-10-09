@@ -5,7 +5,8 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: "index-bundle.js"
+    publicPath: '/',
+    filename: "index-bundle.js",
   },
   module: {
     rules: [
@@ -26,7 +27,20 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.jsx$/,
+        exclude: /(node_modules)/,
+        loader: "babel-loader",
+        options:{
+            presets:["@babel/preset-env", "@babel/preset-react"]
+        }
+    }
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+    hot: true
   },
   plugins: [
     new HtmlWebpackPlugin({
