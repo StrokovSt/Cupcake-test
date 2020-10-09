@@ -6,16 +6,18 @@ import { BookComponent } from './bookComponent'
 const BooksListComponent = () => {
   const dispatch = useDispatch()
   const books = useSelector(state => state.books.books)
+  const loading = useSelector(state => state.load.loading)
 
   useEffect(() => {
     dispatch(loadBooks())
   }, [])
 
-  if (!books.length) {
+  if (loading) {
     return (
-      <div className="books-error">
-        <p>Книги не найдены</p>
+      <div className="lds-ring">
+        <div></div><div></div><div></div><div></div>
       </div>
+      
     )
   }
 
