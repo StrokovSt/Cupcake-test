@@ -1,8 +1,16 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React, {useEffect} from 'react'
+import {connect, useDispatch, useSelector} from 'react-redux'
+import { loadBooks } from '../redux/actions'
 import { BookComponent } from './bookComponent'
 
-const BooksListComponent = ({books}) => {
+const BooksListComponent = () => {
+  const dispatch = useDispatch()
+  const books = useSelector(state => state.books.books)
+
+  useEffect(() => {
+    dispatch(loadBooks())
+  }, [])
+
   if (!books.length) {
     return (
       <div className="books-error">
@@ -12,16 +20,17 @@ const BooksListComponent = ({books}) => {
   }
 
   return (
-    <ul className="books-list">
-      {books.map((book, index) => {
-        return <BookComponent book={book} key={index}/>
-      })}
-    </ul>
+    <div>
+      <ul className="books-list">
+        {books.map((book, index) => {
+          return <BookComponent book={book} key={index}/>
+        })}
+      </ul>
+    </div>
   )
 }
 
 const mapStateToProps = state => {
-  console.log(state.books)
   return {
     books: state.books.books
   }

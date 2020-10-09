@@ -1,11 +1,14 @@
 import React from "react"
 import {render} from "react-dom"
-import { compose, createStore } from "redux"
 import {Provider} from 'react-redux'
-import { rootReducer } from "./redux/rootReducer.js"
+import { compose, createStore, applyMiddleware } from "redux"
+import thunk from 'redux-thunk'
+import { rootReducer } from "./js/redux/rootReducer.js"
+require("@babel/polyfill");
 import App from "./js/App.js"
 
 const store = createStore(rootReducer, compose(
+  applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ))
 
