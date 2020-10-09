@@ -1,5 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./js/App.js";
+import React from "react"
+import {render} from "react-dom"
+import { compose, createStore } from "redux"
+import {Provider} from 'react-redux'
+import { rootReducer } from "./redux/rootReducer.js"
+import App from "./js/App.js"
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const store = createStore(rootReducer, compose(
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+))
+
+const app = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
+
+render(app, document.getElementById("root"))

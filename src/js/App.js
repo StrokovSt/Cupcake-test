@@ -3,8 +3,6 @@ import {BrowserRouter} from 'react-router-dom';
 import {useRoutes} from './routes';
 import '../styles/style.scss'
 
-import {Switch, Route, Redirect} from 'react-router-dom'
-
 function App() {
   const URL = 'http://5d22b7fd4e05c600146ef4dd.mockapi.io/cupcake/books'
   const routes = useRoutes();
