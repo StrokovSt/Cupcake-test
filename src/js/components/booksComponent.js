@@ -1,7 +1,8 @@
-import React from 'react';
-import { BookComponent } from './bookComponent';
+import React from 'react'
+import {connect} from 'react-redux'
+import { BookComponent } from './bookComponent'
 
-export const BooksListComponent = ({books}) => {
+const BooksListComponent = ({books}) => {
   if (!books.length) {
     return (
       <div className="books-error">
@@ -12,9 +13,18 @@ export const BooksListComponent = ({books}) => {
 
   return (
     <ul className="books-list">
-      {books.map(book => {
-        return <BookComponent book={book} />
+      {books.map((book, index) => {
+        return <BookComponent book={book} key={index}/>
       })}
     </ul>
   )
 }
+
+const mapStateToProps = state => {
+  console.log(state.books)
+  return {
+    books: state.books.books
+  }
+}
+
+export default connect(mapStateToProps, null)(BooksListComponent)
