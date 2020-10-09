@@ -1,7 +1,7 @@
 import React from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
-import { MainPage } from './pages/main-page'
-import { CartPage } from './pages/cart-page'
+import { MainPage } from './pages/mainPage'
+import { CartPage } from './pages/cartPage'
 
 export const useRoutes = () => {
   return (
