@@ -1,6 +1,7 @@
 import React from "react"
 import {BrowserRouter} from 'react-router-dom'
 import {useRoutes} from './routes'
+import {NavigationComponent} from './components/navigationComponent'
 import '../styles/style.scss'
 
 function App() {
@@ -8,9 +9,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <header>
-        <a href="/">Main</a>
-        <a href="/cart">Cart</a>
+      <header className="header">
+        <NavigationComponent />
         {routes}
       </header>
     </BrowserRouter>

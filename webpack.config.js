@@ -8,6 +8,7 @@ module.exports = {
     publicPath: '/',
     filename: "index-bundle.js",
   },
+  devtool: `source-map`,
   module: {
     rules: [
       {
@@ -34,7 +35,15 @@ module.exports = {
         options:{
             presets:["@babel/preset-env", "@babel/preset-react"]
         }
-    }
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ]
   },
   devServer: {
