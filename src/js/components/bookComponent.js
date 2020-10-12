@@ -18,7 +18,6 @@ export const BookComponent = ({book}) => {
           bookIndex = index
         }
       })
-      console.log(purchases[bookIndex].count + booksCount)
       if (purchases[bookIndex].count + booksCount > BOOKS_LIMIT) {
         dispatch(showAlert(SHOW_PURCHASE_ALERT, HIDE_PURCHASE_ALERT, 'На складе отсутствует нужное количество товаров'))
         return
