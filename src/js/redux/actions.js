@@ -1,4 +1,4 @@
-import { LOAD_BOOKS, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT } from "./types";
+import { LOAD_BOOKS, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, ADD_PURCHASE, CHANGE_PURCHASE_COUNT } from "./types";
 
 const URL = 'http://5d22b7fd4e05c600146ef4dd.mockapi.io/cupcake/books'
 
@@ -14,9 +14,27 @@ export function loadBooks() {
         dispatch(hideLoader())
       }
     } catch (error) {
-      dispatch(showAlert('Что-то пошло не так'))
+      dispatch(showAlert(SHOW_ALERT, HIDE_ALERT, 'Что-то пошло не так'))
       dispatch(hideLoader())
     }
+  }
+}
+
+export function addPurchases(purchases) {
+  return dispatch => {
+    dispatch({
+      type: ADD_PURCHASE,
+      payload: purchases
+    })
+  }
+}
+
+export function changePurchase(count) {
+  return dispatch => {
+    dispatch({
+      type: CHANGE_PURCHASE_COUNT,
+      payload: count
+    })
   }
 }
 
@@ -32,21 +50,21 @@ export function hideLoader() {
   }
 }
 
-export function showAlert(text) {
+export function showAlert(showType, hideType, text) {
   return dispatch => {
     dispatch({
-      type: SHOW_ALERT,
+      type: showType,
       payload: text
     })
 
     setTimeout(() => {
-      dispatch(hideAlert())
-    }, 10000)
+      dispatch(hideAlert(hideType))
+    }, 3000)
   }
 }
 
-export function hideAlert() {
+export function hideAlert(type) {
   return {
-    type: HIDE_ALERT
+    type: type
   }
 }
