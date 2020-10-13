@@ -14,6 +14,12 @@ export const HIDE_LOADER = 'HIDE_LOADER'
 export const SHOW_ALERT = 'SHOW_ALERT'
 export const HIDE_ALERT = 'HIDE_ALERT'
 
+// Модальное окно книги
+
+export const SHOW_MODAL = 'SHOW_MODAL'
+export const HIDE_MODAL = 'HIDE_MODAL'
+export const SET_MODAL_BOOK = 'SET_BOOK_INDEX'
+
 // Лимит на покупку
 
 export const BOOKS_LIMIT = 3

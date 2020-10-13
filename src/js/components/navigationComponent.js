@@ -14,8 +14,6 @@ export const NavigationComponent = () => {
     });
   }
 
-  console.log(cartIcon)
-
   return (
     <nav className="header__navigation navigation container">
       <ul className="navigation__list">

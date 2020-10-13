@@ -21,7 +21,7 @@ const BooksListComponent = () => {
       {errorAlert && <p>Ошибыч</p>}
       <ul className="books-list">
         {books.map((book, index) => {
-          return <BookComponent book={book} key={index}/>
+          return <BookComponent book={book} key={index} index={index}/>
         })}
       </ul>
     </div>

@@ -1,4 +1,4 @@
-import { LOAD_BOOKS, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, ADD_PURCHASE, DELETE_PURCHASE, CHANGE_PURCHASE_COUNT } from "./types";
+import { LOAD_BOOKS, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, ADD_PURCHASE, DELETE_PURCHASE, CHANGE_PURCHASE_COUNT, SHOW_MODAL, HIDE_MODAL, SET_MODAL_BOOK } from "./types";
 
 const URL = 'http://5d22b7fd4e05c600146ef4dd.mockapi.io/cupcake/books'
 
@@ -77,5 +77,26 @@ export function showAlert(showType, hideType, text) {
 export function hideAlert(type) {
   return {
     type: type
+  }
+}
+
+export function setModalBook(book) {
+  return dispatch => {
+    dispatch({
+      type: SET_MODAL_BOOK,
+      book
+    })
+  }
+}
+
+export function showModal() {
+  return {
+    type: SHOW_MODAL
+  }
+}
+
+export function hideModal() {
+  return {
+    type: HIDE_MODAL
   }
 }

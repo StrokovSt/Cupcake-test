@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import { addPurchases, showAlert } from '../redux/actions'
+import { addPurchases, showAlert, setModalBook, showModal } from '../redux/actions'
 import { SHOW_PURCHASE_ALERT, HIDE_PURCHASE_ALERT, BOOKS_LIMIT } from '../redux/types';
 
 export const BookComponent = ({book}) => {
@@ -43,8 +43,13 @@ export const BookComponent = ({book}) => {
     }
   }
 
+  const bookClickHandler = () => {
+    dispatch(setModalBook(book))
+    dispatch(showModal())
+  }
+
   return (
-    <div className="book-card">
+    <div className="book-card" onClick={bookClickHandler}>
       <img src={book.image}></img>
       {errorAlert && <p>{errorAlert}</p>}
       <h3>{book.title}</h3>
