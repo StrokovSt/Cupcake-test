@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import { addPurchases, showAlert } from '../redux/actions'
-import { SHOW_PURCHASE_ALERT, HIDE_PURCHASE_ALERT } from '../redux/types';
+import { SHOW_PURCHASE_ALERT, HIDE_PURCHASE_ALERT, BOOKS_LIMIT } from '../redux/types';
 
 export const BookComponent = ({book}) => {
-  const BOOKS_LIMIT = 3
   const [booksCount, setBooksCount] = useState(1)
+  const [bookAlert, setBookAlert] = useState(false)
   const dispatch = useDispatch()
   const purchases = useSelector(state => state.books.purchase)
   const errorAlert = useSelector(state => state.books.alert)
@@ -26,6 +26,7 @@ export const BookComponent = ({book}) => {
 
     if(booksCount <= BOOKS_LIMIT) {
       dispatch(addPurchases({...book, count: booksCount}))
+      setBooksCount(1)
     } else {
       dispatch(showAlert(SHOW_PURCHASE_ALERT, HIDE_PURCHASE_ALERT, 'На складе отсутствует нужное количество товаров'))
     } 
@@ -37,8 +38,8 @@ export const BookComponent = ({book}) => {
 
   const deleteBookHandler = () => {
     setBooksCount(prev => prev - 1)
-    if (booksCount <= 1) {
-      setBooksCount(1)
+    if (booksCount <= 0) {
+      setBooksCount(0)
     }
   }
 
@@ -51,7 +52,7 @@ export const BookComponent = ({book}) => {
       <p>Заказать книг {booksCount}</p>
       <button type="button" onClick={deleteBookHandler}>Удалить книгу</button>
       <button type="button" onClick={addBookHandler}>Добавить книгу</button>
-      <button type="button" onClick={buttonSubmitClickHandler}>Добавить в корзину</button>
+      <button type="button" onClick={buttonSubmitClickHandler} disabled={booksCount > 0 ? false : true}>Добавить в корзину</button>
     </div>
   )
 }

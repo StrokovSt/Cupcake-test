@@ -11,8 +11,8 @@ function App() {
     <BrowserRouter>
       <header className="header">
         <NavigationComponent />
-        {routes}
       </header>
+      {routes}
     </BrowserRouter>
   )
 }

@@ -1,4 +1,4 @@
-import { LOAD_BOOKS, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, ADD_PURCHASE } from "./types";
+import { LOAD_BOOKS, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, ADD_PURCHASE, DELETE_PURCHASE, CHANGE_PURCHASE_COUNT } from "./types";
 
 const URL = 'http://5d22b7fd4e05c600146ef4dd.mockapi.io/cupcake/books'
 
@@ -7,7 +7,7 @@ export function loadBooks() {
     try {
       if (!localStorage.getItem('books')) {
         dispatch(showLoader())
-        const response = await fetch(URL)
+        const response = await fetch(URL, {method: 'GET', mode: 'cors', cache: 'no-store', headers: {'Content-Type': 'application/json'}})
         const json = await response.json()
         console.log(json.books)
         localStorage.setItem('books', JSON.stringify(json.books))
@@ -26,6 +26,25 @@ export function addPurchases(purchases) {
     dispatch({
       type: ADD_PURCHASE,
       payload: purchases
+    })
+  }
+}
+
+export function changePurchaseCount(count, index) {
+  return dispatch => {
+    dispatch({
+      type: CHANGE_PURCHASE_COUNT,
+      count,
+      index
+    })
+  }
+}
+
+export function deletePurchase(index) {
+  return dispatch => {
+    dispatch({
+      type: DELETE_PURCHASE,
+      index
     })
   }
 }

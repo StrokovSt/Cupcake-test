@@ -1,7 +1,11 @@
 import React from 'react';
+import CartPurchasesListComponent from '../components/cartPurchasesList';
 
 export const CartPage = () => {
   return (
-    <h1>Im cart page</h1>
+    <React.Fragment>
+      <h1>Im cart page</h1>
+      <CartPurchasesListComponent />
+    </React.Fragment>
   )
 }

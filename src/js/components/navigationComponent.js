@@ -10,7 +10,6 @@ export const NavigationComponent = () => {
 
   if (purchases) {
     purchases.forEach(purchase => {
-      console.log(purchase.count)
       purchasesCount = purchasesCount + purchase.count
     });
   }
