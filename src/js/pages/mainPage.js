@@ -3,9 +3,9 @@ import BooksListComponent  from '../components/booksComponent';
 
 export const MainPage = () => {
   return (
-    <div>
+    <main>
       <h1>Im main page</h1>
       <BooksListComponent />
-    </div>
+    </main>
   )
 }

@@ -3,9 +3,9 @@ import CartPurchasesListComponent from '../components/cartPurchasesList';
 
 export const CartPage = () => {
   return (
-    <React.Fragment>
+    <main>
       <h1>Im cart page</h1>
       <CartPurchasesListComponent />
-    </React.Fragment>
+    </main>
   )
 }
