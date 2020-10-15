@@ -1,0 +1,39 @@
+.heading-section {
+  padding: 1rem 0;
+  background-color: $color-ghost-light;
+}
+
+.heading-section__description {
+  position: relative;
+  left: 50%;
+
+  width: fit-content;
+  text-align: center;
+
+  transform: translateX(-50%);
+  transition: 1s ease-in-out all;
+  transition-delay: 0.25s;
+
+  &--modal {
+    left: 0;
+
+    text-align: left;
+    transform: translateX(0);
+  }
+}
+
+.heading-section__description > h1 {
+  margin: 0;
+  margin-bottom: 1rem;
+  padding: 0;
+
+  font-size: $h3-size;
+}
+
+.heading-section__description > p {
+  margin: 0;
+  padding: 0;
+
+  font-size: $h4-size;
+  color: $color-magenta;
+}

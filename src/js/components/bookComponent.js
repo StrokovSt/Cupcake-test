@@ -13,8 +13,10 @@ export const BookComponent = ({book}) => {
   return (
     <li className="books-section__item" onClick={bookClickHandler}>
       <img src={book.image}></img>
-      <h3>{book.title}</h3>
-      <span>Book price: {book.price}</span>
+      <div className="books-section__item-description">
+        <h3>{book.title}</h3>
+        <p>Book price: <span>{book.price}$</span></p>
+      </div>
     </li>
   )
 }

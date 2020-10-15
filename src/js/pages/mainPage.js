@@ -1,31 +1,40 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { CSSTransition } from "react-transition-group"
 import BooksListComponent  from '../components/booksComponent';
+import { HeadingComponent } from '../components/headingComponent';
 import ModalBookComponent from '../components/modalBookComponent';
 
 export const MainPage = () => {
-  const dispatch = useDispatch()
+  const [menuHeight, setMenuHeight] = useState(null);
   const modalStatus = useSelector(state => state.modal.isDisplayed)
-  const modalBook = useSelector(state => state.modal.book)
+
+  function calcHeight(el) {
+    const height = el.offsetHeight + 20;
+    setMenuHeight(height);
+  }
 
   return (
-    <main>
-      <section className="books-section">
+    <main className="page-main">
+      <HeadingComponent />
+
+      <section className="page-main__books-section books-section container" style={{ height: menuHeight }}>
         <CSSTransition
           in={!modalStatus}
           timeout={1000}
           classNames="menu-primary"
-          unmountOnExit>
-            <BooksListComponent />
+          unmountOnExit
+          onEnter={calcHeight}>
+            <BooksListComponent/>
         </CSSTransition>
 
         <CSSTransition
           in={modalStatus}
           timeout={1000}
           classNames="menu-secondary"
-          unmountOnExit>
-            <ModalBookComponent />
+          unmountOnExit
+          onEnter={calcHeight}>
+            <ModalBookComponent/>
         </CSSTransition>
       </section>
     </main>
