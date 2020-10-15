@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {Fragment, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { loadBooks } from '../redux/actions'
 import { BookComponent } from './bookComponent'
@@ -14,17 +14,17 @@ const BooksListComponent = () => {
   }, [])
 
   return (
-    <div>
+    <Fragment>
       {loading && <div className="lds-ring">
         <div></div><div></div><div></div><div></div>
       </div>}
       {errorAlert && <p>Ошибыч</p>}
-      <ul className="books-list">
+      <ul className="books-section__books-list">
         {books.map((book, index) => {
           return <BookComponent book={book} key={index} index={index}/>
         })}
       </ul>
-    </div>
+    </Fragment>
   )
 }
 
