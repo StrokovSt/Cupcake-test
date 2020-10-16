@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import { deletePurchase, changePurchaseCount } from "../redux/purchasesSlice"
+import { deletePurchase, changePurchaseCount, setPurchases } from "../redux/purchasesSlice"
 
 export const CartPurchaseComponent = ({purchase}) => {
   const BOOKS_LIMIT = 3
@@ -8,6 +8,10 @@ export const CartPurchaseComponent = ({purchase}) => {
   const purchases = useSelector(state => state.purchases.purchases)
   const purchaseIndex = purchases.indexOf(purchase)
   const [purchaseAlert, setPurchaseAlert] = useState(false)
+
+  useEffect(() => {
+    localStorage.setItem('purchases', JSON.stringify(purchases))
+  }, [purchases])
 
   const addPurchaseHandler = () => {
     if (purchase.count >= BOOKS_LIMIT) {
