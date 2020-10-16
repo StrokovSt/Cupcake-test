@@ -21,8 +21,8 @@ export const MainPage = () => {
       <section className="page-main__books-section books-section container" style={{ height: menuHeight }}>
         <CSSTransition
           in={!modalStatus}
-          timeout={1000}
-          classNames="menu-primary"
+          timeout={1500}
+          classNames="books-section"
           unmountOnExit
           onEnter={calcHeight}>
             <BooksListComponent/>
@@ -30,8 +30,8 @@ export const MainPage = () => {
 
         <CSSTransition
           in={modalStatus}
-          timeout={1000}
-          classNames="menu-secondary"
+          timeout={1500}
+          classNames="modal-article"
           unmountOnExit
           onEnter={calcHeight}>
             <ModalBookComponent/>

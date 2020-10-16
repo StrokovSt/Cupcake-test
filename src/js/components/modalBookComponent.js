@@ -58,15 +58,54 @@ const ModalBookComponent = () => {
   window.addEventListener('keyup', escPressHandler)
 
   return (
-    <article className="modal-article">
-      <h3>{modalBook.title}</h3>
-      {errorAlert && <p>{errorAlert}</p>}
-      <img src={modalBook.image}></img>
-      <span>Price: {modalBook.price}</span>
-      <button type="button" onClick={closeHandler}>Закрыть окно</button>
-      <button type="button" onClick={deleteBookHandler}>Удалить книгу</button>
-      <button type="button" onClick={addBookHandler}>Добавить книгу</button>
-      <button type="button" onClick={buttonSubmitClickHandler} disabled={booksCount > 0 ? false : true}>Добавить в корзину</button>
+    <article className="books-section__modal-article modal-article">
+      <div className="modal-article__book-container">
+        <div className="modal-article__img-container">
+          <img src={modalBook.image}></img>
+        </div>
+        <div className="modal-article__price-container">
+        <button className="modal-article__remove-button" type="button" onClick={deleteBookHandler}>Удалить книгу</button>
+          <span>{booksCount}</span>
+          <button className="modal-article__add-button" type="button" onClick={addBookHandler}>Добавить книгу</button>
+          <button className="modal-article__submit-button" type="button" onClick={buttonSubmitClickHandler} disabled={booksCount > 0 ? false : true}>Добавить в корзину</button>
+        </div>
+      </div>
+      <div className="modal-article__description-container">
+        <button className="modal-article__close-button" type="button" onClick={closeHandler}>to home page</button>
+        
+        {errorAlert ? <div className="modal-article__alert-container">
+          <span>Meow</span>
+        </div> : null}
+        
+        <table className="modal-article__table">
+          <tr className="modal-article__table-tr">
+            <td className="modal-article__table-td">Price</td>
+            <td className="modal-article__table-td">{modalBook.price}</td>
+          </tr>
+          <tr className="modal-article__table-tr">
+            <td className="modal-article__table-td">Rating</td>
+            <td className="modal-article__table-td">Rating</td>
+          </tr>
+          <tr className="modal-article__table-tr">
+            <td className="modal-article__table-td">Author</td>
+            <td className="modal-article__table-td">Author</td>
+          </tr>
+          <tr className="modal-article__table-tr">
+            <td className="modal-article__table-td">Language</td>
+            <td className="modal-article__table-td">Language</td>
+          </tr>
+          <tr className="modal-article__table-tr">
+            <td className="modal-article__table-td">Isbn13</td>
+            <td className="modal-article__table-td">{modalBook.isbn13}</td>
+          </tr>
+        </table>
+        <h3>Description</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
     </article>
   )
 }

@@ -13,25 +13,19 @@ export const booksReducer = (state = initialState, action) => {
 
     case ADD_PURCHASE:
       const purchaseBook = action.payload
-      let bookIndex
 
       if (state.purchase.some(e => e.isbn13 === purchaseBook.isbn13)) {
-        state.purchase.forEach((purchase, index) => {
-          if (purchase.isbn13 === purchaseBook.isbn13) {
-            bookIndex = index
-          }
-        })    
-
         const newArray = state.purchase.map((obj, index) => {
-          if (bookIndex === index) {
-            return {...obj, count: state.purchase[bookIndex].count + purchaseBook.count}
+          if (obj.isbn13 === purchaseBook.isbn13) {
+            return {...obj, count: obj.count + purchaseBook.count}
           }
-          return {...obj}
+          return obj
         })
 
         localStorage.setItem('purchases', JSON.stringify(newArray))
         return ({...state, purchase: newArray})
       }
+      
       localStorage.setItem('purchases', JSON.stringify(state.purchase.concat(purchaseBook)))
       return {...state, purchase: state.purchase.concat(purchaseBook)}
 

@@ -6,6 +6,8 @@ $border-radius: 0;
   overflow: hidden;
   transition: 1s ease-in-out all;
   z-index: 1;
+
+  clip-path: polygon(20% 0%, 80% 0%, 100% 0%, 100% 100%, 80% 100%, 20% 100%, 0% 100%, 0% 0%);
 }
 
 .books-section__books-list {
@@ -77,4 +79,33 @@ $border-radius: 0;
 .books-section__item-description span {
   font-weight: bold;
   color: $color-magenta;
+}
+
+/* CSSTransition classes  */
+
+.books-section-enter {
+  position: absolute;
+
+  transition: all 1.5s ease;
+  transform: translateX(-110%);
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.books-section-enter-active {
+  transform: translateX(0%);
+  transition: all 1.5s ease;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 0%, 100% 100%, 80% 100%, 20% 100%, 0% 100%, 0% 0%);
+}
+
+.books-section-exit {
+  position: absolute;
+
+  transition: all 1.5s ease;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 0%, 100% 100%, 80% 100%, 20% 100%, 0% 100%, 0% 0%);
+}
+
+.books-section-exit-active {
+  transform: translateX(-110%);
+  transition: all 1.5s ease;
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
 }
