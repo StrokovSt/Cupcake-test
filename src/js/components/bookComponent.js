@@ -1,13 +1,13 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux'
-import { setModalBook, showModal } from '../redux/actions'
+import { useDispatch } from 'react-redux'
+import { setModalBook, showModalBook } from "../redux/modalSlice"
 
 export const BookComponent = ({book}) => {
   const dispatch = useDispatch()
 
   const bookClickHandler = (evt) => {
     dispatch(setModalBook(book))
-    dispatch(showModal())
+    dispatch(showModalBook())
   }
 
   return (

@@ -1,12 +1,21 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg'
 import logo from '../../img/logo.png';
 import cartIcon from '../../img/icon-cart.svg'
+import { setPurchases } from '../redux/purchasesSlice';
 
 export const NavigationComponent = () => {
-  const purchases = useSelector(state => state.books.purchase)
+  const dispatch = useDispatch()
+  const purchases = useSelector(state => state.purchases.purchases)
   let purchasesCount = 0
+
+  useEffect(() => {
+    const localStoragePurchases = JSON.parse(localStorage.getItem('purchases'))
+    if (localStoragePurchases) {
+      dispatch(setPurchases(localStoragePurchases))
+    }
+  }, [])
 
   if (purchases) {
     purchases.forEach(purchase => {

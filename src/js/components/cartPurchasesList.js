@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import {CartPurchaseComponent} from './cartPurchaseComponent'
 
 const CartPurchasesListComponent = () => {
-  const dispatch = useDispatch()
-  const purchases = useSelector(state => state.books.purchase)
+  const purchases = useSelector(state => state.purchases.purchases)
   
   return (
     <section className="cart-section">

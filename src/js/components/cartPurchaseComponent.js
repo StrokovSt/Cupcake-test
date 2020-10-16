@@ -1,34 +1,26 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import { changePurchaseCount, deletePurchase, showAlert } from '../redux/actions';
-import { SHOW_PURCHASE_ALERT, HIDE_PURCHASE_ALERT, BOOKS_LIMIT } from '../redux/types';
+import { deletePurchase, changePurchaseCount } from "../redux/purchasesSlice"
 
 export const CartPurchaseComponent = ({purchase}) => {
+  const BOOKS_LIMIT = 3
   const dispatch = useDispatch()
-  const purchases = useSelector(state => state.books.purchase)
+  const purchases = useSelector(state => state.purchases.purchases)
   const purchaseIndex = purchases.indexOf(purchase)
-  const errorAlert = useSelector(state => state.books.alert)
   const [purchaseAlert, setPurchaseAlert] = useState(false)
 
   const addPurchaseHandler = () => {
     if (purchase.count >= BOOKS_LIMIT) {
-      setPurchaseAlert(true)
-      dispatch(showAlert(SHOW_PURCHASE_ALERT, HIDE_PURCHASE_ALERT, 'На складе отсутствует нужное количество товаров'))
-
-      setTimeout(() => {
-        setPurchaseAlert(false)
-      }, 3000)
-
       return
     }
-    dispatch(changePurchaseCount(purchase.count + 1, purchaseIndex))
+    dispatch(changePurchaseCount({...purchase, count: purchase.count + 1}))
   }
 
   const deletePurchaseHandler = () => {
     if (purchase.count <= 1) {
       return
     }
-    dispatch(changePurchaseCount(purchase.count - 1, purchaseIndex))
+    dispatch(changePurchaseCount({...purchase, count: purchase.count - 1}))
   }
 
   const destroyHandler = () => {
@@ -42,7 +34,6 @@ export const CartPurchaseComponent = ({purchase}) => {
         <h3>{purchase.title}</h3>
         <p>Book price: {purchase.price}</p>
         <p>Total price: {purchase.count * purchase.price}</p>
-        {(errorAlert && purchaseAlert) && <p>{errorAlert}</p>}
         <div>
           <button type="button" onClick={addPurchaseHandler}>Добавить товар</button>
           <p>Выбрано книг {purchase.count}</p>
