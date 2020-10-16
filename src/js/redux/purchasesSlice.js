@@ -43,9 +43,17 @@ const purchasesSlise = createSlice({
         }
         return purchase
       })
+    },
+
+    showPurchasesAlert(state) {
+      state.alert = "Недостаточно товаров на складе"
+    },
+
+    hidePurchasesAlert(state) {
+      state.alert = null
     }
   }
 })
 
 export default purchasesSlise.reducer
-export const {setPurchases, addPurchase, deletePurchase, changePurchaseCount} = purchasesSlise.actions
+export const {setPurchases, addPurchase, deletePurchase, changePurchaseCount, showPurchasesAlert, hidePurchasesAlert} = purchasesSlise.actions

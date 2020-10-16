@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { hideModalBook } from "../redux/modalSlice"
-import { addPurchase } from "../redux/purchasesSlice"
+import { addPurchase, showPurchasesAlert, hidePurchasesAlert } from "../redux/purchasesSlice"
 
 const ModalBookComponent = () => {
   const BOOKS_LIMIT = 3
@@ -25,6 +25,11 @@ const ModalBookComponent = () => {
         }
       })
       if (purchases[bookIndex].count + booksCount > BOOKS_LIMIT) {
+        dispatch(showPurchasesAlert())
+
+        setTimeout(() => {
+          dispatch(hidePurchasesAlert())
+        }, 3000)
         return
       }
     }
@@ -33,6 +38,11 @@ const ModalBookComponent = () => {
       dispatch(addPurchase({...modalBook, count: booksCount}))
       setBooksCount(1)
     } else {
+      dispatch(showPurchasesAlert())
+        
+      setTimeout(() => {
+        dispatch(hidePurchasesAlert())
+      }, 3000)
       return
     } 
   }
@@ -78,7 +88,7 @@ const ModalBookComponent = () => {
         <button className="modal-article__close-button" type="button" onClick={closeHandler}>to home page</button>
         
         {errorAlert ? <div className="modal-article__alert-container">
-          <span>Meow</span>
+          <span>{errorAlert}</span>
         </div> : null}
         
         <table className="modal-article__table">

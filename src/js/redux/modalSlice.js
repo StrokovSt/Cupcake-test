@@ -4,7 +4,7 @@ const modalBookSlice = createSlice({
   name: 'modalBook',
   initialState: {
     isDisplayed: false,
-    book: null
+    book: null,
   },
   reducers: {
     setModalBook(state, action) {
